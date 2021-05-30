@@ -19,5 +19,7 @@ setup(
         "apispec[yaml]",
         "apispec-webframeworks",
     ],
-    entry_points={"console_scripts": ["toby_dev_blog = toby_dev_blog.manage:cli"]},
+    entry_points={
+        "console_scripts": ["toby_dev_blog = toby_dev_blog.manage:cli"]
+    },
 )

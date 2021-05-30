@@ -15,7 +15,6 @@ install:
 
 # Run the unit test
 script:
-  - coverage run tests.py
   - pipenv run black --check .
   - pipenv run isort -c .
   - pipenv run mypy
