@@ -3,6 +3,7 @@
 from flask import Flask, jsonify
 from marshmallow import ValidationError
 
+from toby_dev_blog.api.resources import blp_post
 from toby_dev_blog.extensions import api, db, ma
 
 
@@ -46,3 +47,4 @@ def configure_errors(app):
 
 def register_blueprints(api):
     """register all blueprints for api"""
+    api.register_blueprint(blp_post)
