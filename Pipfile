@@ -1,0 +1,48 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+behave = "*"
+black = "*"
+flake8 = "*"
+interrogate = "*"
+isort = "*"
+mypy = "*"
+pre-commit = "*"
+pylint = "*"
+pylint-flask-sqlalchemy = "*"
+tox = "*"
+pytest = "*"
+pytest-factoryboy = "*"
+pytest-cov = "*"
+bandit = "*"
+factory-boy = "*"
+pytest-mock = "*"
+mock = "*"
+
+
+[packages]
+python-dotenv = "*"
+passlib = "*"
+gunicorn = "*"
+toby_dev_blog = {editable = true, path = "."}
+Flask = "*"
+Flask-Migrate = "*"
+Flask-SQLAlchemy = "*"
+Flask-JWT-Extended = "*"
+flask-marshmallow = "*"
+flask-smorest = "*"
+install = "*"
+names = "*"
+psycopg2-binary = "*"
+marshmallow-sqlalchemy = "*"
+gevent = "*"
+
+
+[requires]
+python_version = "3.9.4"
+
+[pipenv]
+allow_prereleases = true
