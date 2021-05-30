@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/chodar89/toby-dev-blog-api.svg?branch=development)](https://travis-ci.com/chodar89/toby-dev-blog-api)
 ## TOBY DEV BLOG API
 My personal blog API
 
