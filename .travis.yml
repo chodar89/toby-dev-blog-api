@@ -1,0 +1,23 @@
+# Disable sudo to speed up the build
+sudo: false
+
+# Set the build language to Python
+language: python
+
+# Set the python version to 3.9.4
+python: 3.9
+
+# Install pip dependency
+install:
+  - pip install pipenv --upgrade
+  - pipenv install 
+  - pipenv install --dev
+
+# Run the unit test
+script:
+  - pipenv run black --check .
+  - pipenv run isort -c .
+  - pipenv run mypy
+  - pipenv run flake8
+  - pipenv run interrogate
+  - pipenv run pytest

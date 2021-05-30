@@ -1,0 +1,4 @@
+FLASK_ENV=testing
+FLASK_APP=toby_dev_blog.app:create_app
+SECRET_KEY=testing
+TEST_DATABASE_URI=sqlite:///../tests/test_db.db

@@ -1,0 +1,85 @@
+default_language_version:
+  python: python3.9.4
+default_stages:
+  - commit
+  - push
+repos:
+  - repo: local
+    hooks:
+      - id: black
+        name: black
+        language: system
+        entry: pipenv run black
+        types:
+          - python
+        args:
+          - '--check'
+
+      - id: isort
+        name: isort
+        language: system
+        entry: pipenv run isort
+        types:
+          - python
+        args:
+          - '-c'
+          - '.'
+        exclude: ^(setup.py|migrations)
+
+      - id: flake8
+        name: flake8
+        language: system
+        entry: pipenv run flake8
+        types:
+          - python
+        exclude: ^(setup.py|migrations)
+
+      - id: pylint
+        name: pylint
+        language: system
+        entry: pipenv run pylint
+        types:
+          - python
+        args:
+           - '--load-plugins'
+           - pylint_flask_sqlalchemy
+           - ignored-classes=scoped_session
+           - --fail-under=8
+        exclude: ^(setup.py|migrations|tests/conftest.py|^test_*)
+
+      - id: mypy
+        name: mypy
+        language: system
+        entry: pipenv run mypy
+        types:
+          - python
+        pass_filenames: false
+
+      - id: interrogate
+        name: interrogate
+        language: system
+        entry: pipenv run interrogate
+        types:
+          - python
+        args:
+          - '-c'
+          - 'pyproject.toml'
+        pass_filenames: false
+
+      - id: bandit
+        name: bandit
+        language: system
+        entry: pipenv run bandit
+        types:
+          - python
+        exclude: ^(setup.py|migrations|^test_*)
+
+      - id: pytest
+        name: pytest
+        language: system
+        entry: pipenv run pytest
+        types: 
+          - python
+        args: 
+          - '--cov'
+        pass_filenames: false
