@@ -8,7 +8,7 @@ from toby_dev_blog.extensions import db
 from toby_dev_blog.models import Post
 
 
-class Post(factory.alchemy.SQLAlchemyModelFactory):
+class PostFactory(factory.alchemy.SQLAlchemyModelFactory):
     """Post model factory"""
 
     class Meta:
@@ -16,7 +16,7 @@ class Post(factory.alchemy.SQLAlchemyModelFactory):
         sqlalchemy_session = db.session
 
     id = factory.Sequence(lambda n: uuid.uuid4())
-    slug = factory.Sequence(lambda n: f"slug-" + (n + 1))
+    slug = factory.Sequence(lambda n: f"slug-{str(n + 1)}")
     title = "my first post"
     meta_title = "my first post, dev post"
     description = "This post will be about my first post"
@@ -26,6 +26,6 @@ class Post(factory.alchemy.SQLAlchemyModelFactory):
     read_time = 60
     views = 100
     claps = 65
-    publish_at = datetime.utcnow()
+    published_at = datetime.utcnow()
     created_at = datetime.utcnow()
     updated_at = datetime.utcnow()
