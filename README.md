@@ -19,13 +19,3 @@ My personal blog API
 
 ## Swagger
 `/swagger-ui`
-
-# Docker compose build
-```
-$ docker-compose  -f docker/docker-compose.yaml build 
-```
-
-# Docker compose run 
-```
-docker-compose  -f docker/docker-compose.yaml up
-```

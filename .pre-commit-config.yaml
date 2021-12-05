@@ -43,7 +43,7 @@ repos:
         args:
            - '--load-plugins'
            - pylint_flask_sqlalchemy
-           - ignored-classes=scoped_session
+           - pylint_flask
            - --fail-under=8
         exclude: ^(setup.py|migrations|tests/conftest.py|^test_*)
 
