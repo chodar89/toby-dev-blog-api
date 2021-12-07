@@ -38,3 +38,9 @@ def test_post_list__post_200(app, client, db):
     res_json = res.get_json()
     assert res.status_code == 200
     assert res_json[0]["slug"] == "bag-end"
+
+
+def test_post_list__post_422(app, client, db):
+    payload = [{"i_should_not_be_here": "me_too"}]
+    res = client.post("/posts/", json=payload)
+    assert res.status_code == 422

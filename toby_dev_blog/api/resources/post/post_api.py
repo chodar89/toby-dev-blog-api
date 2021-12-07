@@ -27,7 +27,7 @@ class PostListAPI(MethodView):
 
     @blp_post.arguments(PostSchema(many=True))
     @blp_post.response(200, PostSchema(many=True))
-    def post(self, post_data):
+    def post(self, post_data: list[Post]):
         """Post/create list of posts"""
         db.session.add_all(post_data)
         db.session.commit()

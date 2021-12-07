@@ -26,7 +26,7 @@ class UserListAPI(MethodView):
 
     @blp_user.arguments(UserSchema(many=True), location="json")
     @blp_user.response(200, UserSchema(many=True))
-    def post(self, user_data):
+    def post(self, user_data: list[User]):
         """Post/create list of users"""
         db.session.add_all(user_data)
         db.session.commit()
