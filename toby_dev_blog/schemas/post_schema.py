@@ -8,12 +8,11 @@ from toby_dev_blog.models import Post
 class PostSchema(SQLAlchemyAutoSchema):
     """Post Schema
 
-    :param SQLAlchemyAutoSchema: marshmallow sqlalchemy schema class
-    :type SQLAlchemyAutoSchema: metaclass
+    :param SQLAlchemyAutoSchema: `Marshmallow` sqlalchemy schema class
+    :type SQLAlchemyAutoSchema: :class:`SQLAlchemyAutoSchemaz
     """
 
     class Meta:
         model = Post
         sqla_session = db.session
-        strict = True
         load_instance = True

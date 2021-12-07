@@ -4,8 +4,8 @@ from datetime import datetime
 
 import factory
 
-from toby_dev_blog.extensions import db
-from toby_dev_blog.models import Post
+from toby_dev_blog.extensions import bcrypt, db
+from toby_dev_blog.models import Post, User
 
 
 class PostFactory(factory.alchemy.SQLAlchemyModelFactory):
@@ -16,7 +16,7 @@ class PostFactory(factory.alchemy.SQLAlchemyModelFactory):
         sqlalchemy_session = db.session
 
     id = factory.Sequence(lambda n: uuid.uuid4())
-    slug = factory.Sequence(lambda n: f"slug-{str(n + 1)}")
+    slug = factory.Sequence(lambda n: f"slug-{n + 1}")
     title = "my first post"
     meta_title = "my first post, dev post"
     description = "This post will be about my first post"
@@ -27,5 +27,19 @@ class PostFactory(factory.alchemy.SQLAlchemyModelFactory):
     views = 100
     claps = 65
     published_at = datetime.utcnow()
+    created_at = datetime.utcnow()
+    updated_at = datetime.utcnow()
+
+
+class UserFactory(factory.alchemy.SQLAlchemyModelFactory):
+    """User model factory"""
+
+    class Meta:
+        model = User
+        sqlalchemy_session = db.session
+
+    id = factory.Sequence(lambda n: uuid.uuid4())
+    email = factory.Sequence(lambda n: f"email-{n + 1}@gmail.com")
+    password = bcrypt.generate_password_hash("I'm-a-strong-password")
     created_at = datetime.utcnow()
     updated_at = datetime.utcnow()

@@ -1,10 +1,10 @@
-"""Post views - module contains methods to operate on the single and multiple
-Post objects"""
+"""`Post` views - module contains methods to operate on the single and multiple
+`Post` objects"""
 from flask.views import MethodView
 from flask_smorest import Blueprint
 
 from toby_dev_blog.models import Post
-from toby_dev_blog.schemas.posts.post_schema import PostSchema
+from toby_dev_blog.schemas import PostSchema
 
 blp_post = Blueprint(
     "posts", "posts", url_prefix="/posts", description="Operations on posts"
@@ -15,8 +15,8 @@ blp_post = Blueprint(
 class PostListAPI(MethodView):
     """Posts list objects endpoint
 
-    :param MethodView: Flask View Class
-    :type MethodView: :class:'MethodView'
+    :param MethodView: `Flask` View Class
+    :type MethodView: :class:`MethodView`
     """
 
     @blp_post.response(200, PostSchema(many=True))
@@ -32,8 +32,8 @@ class PostListAPI(MethodView):
 class PostAPI(MethodView):
     """Post object endpoint
 
-    :param MethodView: Flask View Class
-    :type MethodView: :class:'MethodView'
+    :param MethodView: `Flask` View Class
+    :type MethodView: :class:`MethodView`
     """
 
     def get(self):
