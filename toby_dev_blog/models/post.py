@@ -8,10 +8,10 @@ from toby_dev_blog.extensions import db
 
 
 class Post(db.Model):
-    """SQLAlchemy model - Post
+    """`SQLAlchemy` model - Post
 
-    :param db: SQLAlchemy DB Model
-    :type db: :class:'db.Model'
+    :param db: `SQLAlchemy` DB Model
+    :type db: :class:`db.Model`
     """
 
     __tablename__ = "posts"
@@ -43,3 +43,6 @@ class Post(db.Model):
         onupdate=datetime.utcnow,
         nullable=False,
     )
+
+
+best_scores = [{"id": uuid.uuid4(), "game_time": 111.2, "score": 120}, {}]

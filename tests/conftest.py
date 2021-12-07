@@ -6,7 +6,7 @@ import pytest
 from dotenv import load_dotenv
 from pytest_factoryboy import register
 
-from tests.factories import PostFactory
+from tests.factories import PostFactory, UserFactory
 from toby_dev_blog.app import create_app
 from toby_dev_blog.extensions import db as db_
 
@@ -48,3 +48,4 @@ def client(app):
 
 
 register(PostFactory, "post")
+register(UserFactory, "user")

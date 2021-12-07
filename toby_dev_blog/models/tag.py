@@ -5,10 +5,10 @@ from toby_dev_blog.extensions import db
 
 
 class Tag(db.Model):
-    """SQLAlchemy model - Tag
+    """`SQLAlchemy` model - Tag
 
-    :param db: SQLAlchemy DB Model
-    :type db: :class:'db.Model'
+    :param db: `SQLAlchemy` DB Model
+    :type db: :class:`db.Model`
     """
 
     __tablename__ = "tags"

@@ -5,7 +5,7 @@ verify_ssl = true
 
 [dev-packages]
 behave = "*"
-black = "*"
+black = "==21.11b1"
 flake8 = "*"
 interrogate = "*"
 isort = "*"
@@ -21,7 +21,6 @@ bandit = "*"
 factory-boy = "*"
 pytest-mock = "*"
 mock = "*"
-
 
 [packages]
 python-dotenv = "*"
@@ -39,10 +38,7 @@ names = "*"
 psycopg2-binary = "*"
 marshmallow-sqlalchemy = "*"
 gevent = "*"
-
+bcrypt-flask = "*"
 
 [requires]
 python_version = "3.9.4"
-
-[pipenv]
-allow_prereleases = true

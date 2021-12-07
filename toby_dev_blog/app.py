@@ -1,10 +1,14 @@
 """Application
 """
-from flask import Flask, jsonify
+import logging
+
+from flask import Flask, jsonify, request
 from marshmallow import ValidationError
 
-from toby_dev_blog.api.resources import blp_post
-from toby_dev_blog.extensions import api, db, ma
+from toby_dev_blog.api.resources import blp_post, blp_user
+from toby_dev_blog.extensions import api, bcrypt, db, ma
+
+log = logging.getLogger(__name__)
 
 
 def create_app(testing=False, cli=False):  # pylint: disable=W0613
@@ -34,6 +38,7 @@ def configure_extensions(app):
     db.init_app(app)
     api.init_app(app)
     ma.init_app(app)
+    bcrypt.init_app(app)
 
 
 def configure_errors(app):
@@ -42,9 +47,14 @@ def configure_errors(app):
     @app.errorhandler(ValidationError)
     def handle_marshmallow_validation(err):  # pylint: disable=W0612
         """Validate schema error"""
-        return jsonify(err.messages), 400
+        log.error(
+            "Request validation failed: %s\nRemote address: %s" % err,
+            request.remote_addr,
+        )
+        return jsonify(err.messages), 422
 
 
 def register_blueprints(api):
     """register all blueprints for api"""
     api.register_blueprint(blp_post)
+    api.register_blueprint(blp_user)
