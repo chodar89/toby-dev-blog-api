@@ -3,6 +3,7 @@
 from flask.views import MethodView
 from flask_smorest import Blueprint
 
+from toby_dev_blog.extensions import db
 from toby_dev_blog.models import Post
 from toby_dev_blog.schemas import PostSchema
 
@@ -24,9 +25,13 @@ class PostListAPI(MethodView):
         """Retrive list of posts"""
         return Post.query.all()
 
-    def post(self):
+    @blp_post.arguments(PostSchema(many=True))
+    @blp_post.response(200, PostSchema(many=True))
+    def post(self, post_data):
         """Post/create list of posts"""
-        return "POST LIST"
+        db.session.add_all(post_data)
+        db.session.commit()
+        return post_data
 
 
 class PostAPI(MethodView):

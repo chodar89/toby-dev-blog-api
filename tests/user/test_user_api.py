@@ -5,7 +5,7 @@ def test_user_list__get_200(app, client, db, user):
     res = client.get("/users/")
     res_json = res.get_json()
     assert res.status_code == 200
-    assert len(res_json)
+    assert len(res_json) == 1
     assert res_json[0]["id"] == str(user.id)
 
 
