@@ -1,6 +1,7 @@
 """SQLAlchemy model - User"""
 import uuid
 from datetime import datetime
+from typing import Union
 
 from sqlalchemy.dialects.postgresql import UUID
 
@@ -46,6 +47,17 @@ class User(db.Model):
         onupdate=datetime.utcnow,
         nullable=False,
     )
+
+    @classmethod
+    def find_by_email(cls, email: str) -> Union["User", None]:
+        """Find :class:`User` by email
+
+        :param email: user email
+        :type email: str
+        :return: Return user object or None
+        :rtype: Union["User", None]
+        """
+        return cls.query.filter(cls.email == email).first()
 
     def check_password(self, password: str) -> bool:
         """Check if given password match hashed password
