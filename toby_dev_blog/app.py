@@ -5,7 +5,13 @@ import logging
 from flask import Flask
 from flask_smorest import Api
 
-from toby_dev_blog.api.resources import blp_post, blp_user
+from toby_dev_blog.api.resources import (
+    blp_login,
+    blp_logout,
+    blp_post,
+    blp_refresh,
+    blp_user,
+)
 from toby_dev_blog.extensions import api, bcrypt, db, jwt, ma
 
 log = logging.getLogger(__name__)
@@ -47,3 +53,6 @@ def register_blueprints(api: Api) -> None:
     """register all blueprints for api"""
     api.register_blueprint(blp_post)
     api.register_blueprint(blp_user)
+    api.register_blueprint(blp_login)
+    api.register_blueprint(blp_logout)
+    api.register_blueprint(blp_refresh)

@@ -57,6 +57,7 @@ class User(db.Model):
         :return: Return user object or None
         :rtype: Union["User", None]
         """
+        breakpoint()
         return cls.query.filter(cls.email == email).first()
 
     def check_password(self, password: str) -> bool:

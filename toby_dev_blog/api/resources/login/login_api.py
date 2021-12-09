@@ -12,7 +12,7 @@ blp_login = Blueprint("login", "login", url_prefix="/login")
 
 @blp_login.route("/")
 class LoginAPI(MethodView):
-    """Posts list objects endpoint
+    """Login user endpoint
 
     :param MethodView: `Flask` View Class
     :type MethodView: :class:`MethodView`
@@ -23,7 +23,7 @@ class LoginAPI(MethodView):
     @blp_login.alt_response(401, description="Invalid credentials")
     def post(self, login_data):
         """Login user and issue jwt token"""
-        user = User.find_by_email(login_data)
+        user = User.find_by_email(login_data["email"])
         if user and user.check_password(login_data["password"]):
             access_token = create_access_token(identity=user.id, fresh=True)
             refresh_token = create_refresh_token(user.id)
